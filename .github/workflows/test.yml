@@ -10,14 +10,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [7.3, 7.4, 8.0, 8.1]
+        php: [7.3, 7.4, 8.0, 8.1, 8.2, 8.3]
         stability: [prefer-lowest, prefer-stable]
 
     name: PHP ${{ matrix.php }} - ${{ matrix.stability }} Test
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -36,7 +36,7 @@ jobs:
       - name: Run unit tests
         run: composer exec phpunit tests/unit
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           repository: pusher/public_actions
           path: .github/actions
